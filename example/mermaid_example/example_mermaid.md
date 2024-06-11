@@ -1,0 +1,1 @@
+![mid_1](../sncdoc_img/_mermaid_example_example_mermaid_mid_1.svg?d=1718112939640)
