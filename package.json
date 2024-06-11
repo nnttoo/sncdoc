@@ -1,4 +1,5 @@
 {
+  "publisher": "SncDoc",
   "name": "sncdoc",
   "displayName": "SncDoc",
   "description": "",
@@ -7,7 +8,7 @@
   "engines": {
     "vscode": "^1.89.0"
   },
-  "repository":  "https://github.com/nnttoo/SncDocBuilder",
+  "repository":  "https://github.com/nnttoo/sncdoc",
   "categories": [
     "Other"
   ],

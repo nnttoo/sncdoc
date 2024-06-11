@@ -1,0 +1,15 @@
+```embed_mermaid
+flowchart TD
+    A[Halaman Utama] --> B[Tombol Daftar Menu]
+    A --> C[Tombol Tambah Menu]
+    A --> D[Tampilan Saldo]
+    
+    B --> E[Menampilkan Daftar Menu]
+    C --> F[Formulir Tambah Menu]
+    D --> G[Menampilkan Saldo Pengguna]
+    
+    %% Tambahkan node database
+    E --> DB1[(Database Menu)]
+    F --> DB1
+    G --> DB2[(Database Saldo)] 
+```
