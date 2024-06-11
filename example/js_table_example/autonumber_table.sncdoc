@@ -1,0 +1,32 @@
+
+
+```eval_js
+   return (async ()=>{ 
+        var jscounter = await import("/js_table_example/autonumber.mjs");
+        await jscounter.AutoNumber(this);
+    })()
+    
+
+```
+
+
+
+<!--autonumbertable--> 
+
+| number |  name |
+|--------|-------|
+| 1      | Test Number |
+| 1      | Test Number |
+| 1      | Test Number |
+| 1      | Test Number |
+| 1      | Test Number |
+| 1      | Test Number |
+| 1      | Test Number |
+| 1      | Test Number |
+| 1      | Test Number |
+| 1      | Test Number |
+| 1      | Test Number |
+| 1      | Test Number |
+| 1      | Test Number |
+
+<!--autonumbertableEnd--> 
