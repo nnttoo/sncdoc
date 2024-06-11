@@ -1,0 +1,113 @@
+{
+  "name": "sncdoc",
+  "displayName": "SncDoc",
+  "description": "",
+  "icon": "resources/icons/sncdoc.png",
+  "version": "0.1.18",
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "repository":  "https://github.com/nnttoo/SncDocBuilder",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "sncdoc",
+        "extensions": [
+          ".sncdoc"
+        ],
+        "aliases": [
+          "SNCDoc"
+        ],
+        "icon": {
+          "light": "resources/icons/sncdoc.png",
+          "dark": "resources/icons/sncdoc.png"
+        } 
+      },
+      {
+        "id": "mermaid",
+        "extensions": [".mermaid"],
+        "aliases": ["Mermaid"],
+        "configuration": "./syntaxes/mermaid-language-configuration.json"
+      }
+    ],
+    "grammars": [ 
+      {
+        "language": "mermaid",
+        "scopeName": "source.mermaid",
+        "path": "/syntaxes/mermaid.tmLanguage.json"
+      },
+      {
+        "language": "sncdoc",
+        "scopeName": "source.sncdoc",
+        "path": "/syntaxes/sncdoc.tmLanguage.json", 
+        "unbalancedBracketScopes": [
+          "markup.underline.link.markdown",
+          "punctuation.definition.list.begin.markdown"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "sncdoc.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "sncdoc.customCommand",
+        "title": "Open SncDoc Viewer"
+      }
+    ],  
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceExtname == .sncdoc",
+          "command": "sncdoc.customCommand",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .sncdoc",
+          "command": "sncdoc.customCommand",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configurationDefaults": {
+        "[sncdoc]": {
+            "editor.wordWrap": "on",
+            "editor.wordWrapColumn": 80
+        }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/vscode": "^1.89.0",
+    "@types/express": "^4.17.21",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/ws": "^8.5.10",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.9",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "ws": "^8.17.0"
+  }
+}

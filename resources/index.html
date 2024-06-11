@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <link rel="stylesheet" href="/static/MarkdownViewer/hl/github-dark.css">
+        <link rel="stylesheet" href="/static/MarkdownViewer/theme_github.css">
+    
+        <script type="text/javascript" src="/static/MarkdownViewer/markdown-it.min.js"></script>
+        <script type="text/javascript" src="/static/MarkdownViewer/mustache/mustache.js"></script>
+        <script src="/static/MarkdownViewer/hl/highlight.min.js"></script>
+        <script src="/static/MarkdownViewer/myfun.js"></script>
+        <script src="/static/MarkdownViewer/mermaid/mermaid.min.js"></script> 
+        <title></title>
+
+        <style> 
+
+            .markdown-body pre{
+                /* font-size: 16px; */
+                background-color: rgb(18, 1, 54);
+            } 
+            #ctn{
+                width: 850px;
+                margin-left: auto;
+                margin-right: auto;
+                border: solid 1px #ccc;
+                padding: 20px;
+            }  
+            @media print {
+                #ctn{
+                
+                    border: solid 1px transparent;
+                    padding: 0px;
+                }  
+            }
+        </style>
+         
+    </head>
+    <div id="ctn" class="markdown-body"></div>
+    <body>
+
+        <script type="module"  >
+            import render  from "/static/markdownviewer.mjs"
+            render();
+
+        </script>
+    </body>
+</html> 

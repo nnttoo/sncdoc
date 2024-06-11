@@ -1,0 +1,50 @@
+{
+  "scopeName": "source.sncdoc",
+  "fileTypes": ["sncdoc"],
+  "patterns": [
+     
+    {
+        "begin": "```mermaid",
+        "end": "```",
+        "contentName": "source.mermaid",
+        "patterns": [
+            {
+                "include": "source.mermaid"
+            }
+        ]
+    },
+    {
+      "begin": "```embed_mermaid",
+      "end": "```",
+      "contentName": "source.mermaid",
+      "patterns": [
+          {
+              "include": "source.mermaid"
+          }
+      ]
+    }, 
+    {
+      "begin": "```eval_js",
+      "end": "```",
+      "contentName": "source.js",
+      "patterns": [
+          {
+              "include": "source.js"
+          }
+      ]
+    },
+    {
+      "begin": "```dictionary_json",
+      "end": "```",
+      "contentName": "source.json",
+      "patterns": [
+          {
+              "include": "source.json"
+          }
+      ]
+    },
+    {
+      "include": "text.html.markdown"
+    }
+  ] 
+}
