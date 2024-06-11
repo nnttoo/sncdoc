@@ -1,6 +1,6 @@
-# Ini scndoc builder
+# Supercharged Note Creator
 
-Membuat markdown dengan fitur lebih lengkap dengan .sncdoc
+Create markdown with more complete features with .sncdoc
 
 # contoh menampilkan mermaid
 
