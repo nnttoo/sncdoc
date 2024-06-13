@@ -40,7 +40,7 @@
         <script>
 
             async function execEval(str, obj){
-                new Function(str).call(obj);
+               await new Function(str).call(obj);
             }
         </script>
 

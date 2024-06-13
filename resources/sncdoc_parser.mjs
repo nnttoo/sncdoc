@@ -106,7 +106,12 @@ export class SncDocParser{
         let regextText = "DICT\\[(.*?)\\]";
         let regexDic = new RegExp(regextText,"gi"); 
 
+
+        console.log(this.dictionary);
         let textResult = mdText.replace(regexDic,(m,p)=>{
+
+            console.log(p);
+            console.log(dictionaryObj[p]);
             if(dictionaryObj[p] != null){
                 return dictionaryObj[p];
             }
