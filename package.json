@@ -4,7 +4,7 @@
   "displayName": "SncDoc",
   "description": "",
   "icon": "resources/icons/sncdoc.png",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "engines": {
     "vscode": "^1.89.0"
   },

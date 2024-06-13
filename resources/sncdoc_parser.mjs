@@ -131,7 +131,7 @@ export class SncDocParser{
             let evalInnerCall = async()=>{
                 try {
                     await sleep(1);
-                    await new Function(txtJsCall).call(this); 
+                    await execEval(txtJsCall,this); 
                 } catch (error) {
                     console.log("eval Error : " + error);
                 }

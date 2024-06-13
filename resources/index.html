@@ -37,6 +37,13 @@
     <div id="ctn" class="markdown-body"></div>
     <body>
 
+        <script>
+
+            async function execEval(str, obj){
+                new Function(str).call(obj);
+            }
+        </script>
+
         <script type="module"  >
             import render  from "/static/markdownviewer.mjs"
             render();
