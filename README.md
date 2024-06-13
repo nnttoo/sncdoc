@@ -5,7 +5,7 @@ Create markdown with more complete features with .sncdoc
 # sncdoc Example
 To see how to use srcdoc, look in   [example](./example) folder
 
-# contoh menampilkan mermaid
+# Mermaid Example
 
 ```````
 ```embed_mermaid
@@ -26,7 +26,7 @@ flowchart TD
 ```````
 
 
-# Contoh Eval
+# EvalJs Example
 
 
 ```````

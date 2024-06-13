@@ -61,7 +61,7 @@ export class MermaidSaver{
             filepathBase = filepathBase.substring(0, filepathBase.length - extension.length);
         }
         filepathBase = filepathBase.replace(/[^a-zA-Z0-9)]/gi,"_");
-        let fpath = "/sncdoc_img/"  + filepathBase + "_" + filename;
+        let fpath = "./sncdoc_img/"  + filepathBase + "_" + filename;
         return fpath;
     }
 
@@ -80,9 +80,8 @@ export class MermaidSaver{
         } catch (error) {
             
         } 
-        
-        var relativeFileapth =  this.getRelative(fpath); 
+         
 
-        return relativeFileapth;
+        return fpath;
     }
 }

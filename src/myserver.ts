@@ -34,6 +34,17 @@ async function readBody(req: express.Request) {
     return bodystr;
 }
 
+function getCurrentFileDir(strReferer : string | undefined){
+    if(typeof(strReferer) == "undefined") return "";
+    try { 
+        let u = new URL(strReferer).pathname;
+        return path.dirname(u);
+    } catch (error) {
+        
+    } 
+    return "";
+}
+
 export default class MyServer {
     resourceFolder?: string;
     workspacePath?: string;
@@ -93,11 +104,13 @@ export default class MyServer {
             })
 
             app.post("/savetext", async (req, res) => {
-                if (this.workspacePath == null) return;
-
-
+                if (this.workspacePath == null) return; 
                 var filepath = req.query.file as string;
 
+                
+
+                
+ 
 
                 // hanya izinkan menulis file md dan svg
                 // biar lebih aman
@@ -106,6 +119,10 @@ export default class MyServer {
                 if (fpathLower.endsWith(".md") ||
                     fpathLower.endsWith(".svg")
                 ) {
+                    if(filepath.startsWith(".")){
+                        var fileDir = getCurrentFileDir(req.get("Referer"));
+                        filepath = path.join(fileDir,filepath);
+                    }
                     var fileFullpath = path.join(this.workspacePath, filepath);
 
                     try {
@@ -118,11 +135,7 @@ export default class MyServer {
 
                     let bodystr = await readBody(req);
                     await fs.promises.writeFile(fileFullpath, bodystr);
-                }
-
-
-
-
+                } 
 
                 res.setHeader('Content-Type', 'text/html');
                 res.send("berhasil");
@@ -145,6 +158,11 @@ export default class MyServer {
                             // menghapus file penting
                             if (!itemFile.toLocaleLowerCase().endsWith(".svg")) continue;
 
+                            if(itemFile.startsWith(".")){
+                                var fileDir = getCurrentFileDir(req.get("Referer"));
+                                itemFile = path.join(fileDir,itemFile);
+                            }
+
                             var fileFullpath = path.join(this.workspacePath, itemFile);
 
                             await fs.promises.unlink(fileFullpath);
@@ -165,9 +183,7 @@ export default class MyServer {
 
             app.use("/", async (req, res) => {
 
-
-
-                console.log("mainserver" + req.path);
+ 
                 if (this.workspacePath == null) {
                     res.send("error");
                     return;
