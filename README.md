@@ -2,6 +2,9 @@
 
 Create markdown with more complete features with .sncdoc
 
+# ChangeLog
+ [changeLog](./CHANGELOG.md)
+
 # sncdoc Example
 To see how to use srcdoc, look in   [example](./example) folder
 

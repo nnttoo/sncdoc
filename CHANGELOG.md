@@ -1,9 +1,9 @@
 # Change Log
 
-All notable changes to the "sncdoc" extension will be documented in this file.
+ 
+## [0.1.24]
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- fix image mermaid
+    Menghapus tanggal pada image mermaid, agar md file tidak terus menerus berubah saat document dibuka.
+    featur d?=tanggal yang tadinya berfungsi untuk membuat cache image digantin dengan pure js `refreshAllSvgImg()`
 
-## [Unreleased]
-
-- Initial release

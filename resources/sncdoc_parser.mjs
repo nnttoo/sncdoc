@@ -177,7 +177,7 @@ export class SncDocParser{
                         svgElement
                     ); 
 
-                    mermaidContent = `![${mermaidid}](${imgpath}?d=${Date.now()})`;
+                    mermaidContent = `![${mermaidid}](${imgpath})`;
                 } else {
                     mermaidContent = "```\n" + txtMermaid + "\n```";
                 } 

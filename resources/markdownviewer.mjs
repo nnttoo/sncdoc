@@ -14,7 +14,19 @@ function renderMustache(template, obj){
     
     return rendered;
 }  
- 
+
+
+function refreshAllSvgImg(){
+    let imgs = document.querySelectorAll("img");
+
+    for(let item of imgs){
+        let hrefsrc = item.getAttribute("src");
+        if(hrefsrc != null && hrefsrc.endsWith(".svg")){
+            hrefsrc = hrefsrc + "?d=" + Date.now()
+            item.setAttribute("src",hrefsrc);
+        }
+    }
+}
  
 
 export default async function render(){
@@ -42,11 +54,11 @@ export default async function render(){
     }
 
     setTitle();
-    let scolltools = new ScrollTools();
+    let scolltools = new ScrollTools(); 
     scolltools.goToScroll();
 
     mytools.runWebSocket(()=>{
-
+        refreshAllSvgImg();
         scolltools.saveScroll();
         window.location.reload();
     });
