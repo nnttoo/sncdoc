@@ -1,3 +1,4 @@
+import { svgToPng } from "./svgToPng.mjs";
 
 
 export class MermaidSaver{
@@ -20,7 +21,7 @@ export class MermaidSaver{
 
         var listFile = [];
         for(let i=1;i<21;i++){
-            let fname = "mid_" + i + ".svg";
+            let fname = "mid_" + i + ".png";
 
             listFile.push(this.getSvgFilePath(fname));
         }
@@ -71,12 +72,12 @@ export class MermaidSaver{
      * @param {string} filecontent 
      */
     async saveMermaid(filename, filecontent){
-
-        let fpath = this.getSvgFilePath(filename);
-       
+ 
+ 
+        let fpath = this.getSvgFilePath(filename); 
         try {
 
-            await this.mtools.saveText(fpath,filecontent);
+            await this.mtools.saveSvgToPng(fpath ,filecontent,1000);
         } catch (error) {
             
         } 

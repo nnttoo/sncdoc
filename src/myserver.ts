@@ -20,14 +20,15 @@ function openBrowser(url: string) {
 }
 
 async function readBody(req: express.Request) {
-    let bodystr: string = await new Promise((r, x) => {
-        let strbody = "";
+    let bodystr: any = await new Promise((r, x) => {
+        let fileData: Buffer[] = [];
         req.on("data", (chunk) => {
-            strbody += chunk;
+            fileData.push(chunk);
         });
 
         req.on("end", () => {
-            r(strbody);
+            const fileBuffer = Buffer.concat(fileData);
+            r(fileBuffer);
         })
     });
 
@@ -88,16 +89,12 @@ export default class MyServer {
                         fpath = path.join(this.workspacePath, fpath);
                         this.workFileFolderPath = path.dirname(fpath);
 
-                        console.log("ini filepath get content " + fpath);
-
+                        
                         filecontent = (await fs.promises.readFile(fpath)).toString();
                     } catch {
 
                     }
                 }
-
-
-
 
                 res.setHeader('Content-Type', 'text/plain');
                 res.send(filecontent);
@@ -109,6 +106,7 @@ export default class MyServer {
 
                 
 
+
                 
  
 
@@ -117,7 +115,9 @@ export default class MyServer {
 
                 var fpathLower = filepath.toLocaleLowerCase();
                 if (fpathLower.endsWith(".md") ||
-                    fpathLower.endsWith(".svg")
+                    fpathLower.endsWith(".svg") || 
+                    fpathLower.endsWith(".png") 
+
                 ) {
                     if(filepath.startsWith(".")){
                         var fileDir = getCurrentFileDir(req.get("Referer"));
@@ -129,11 +129,14 @@ export default class MyServer {
                         // buat dulu foldernya jika belum ada
                         await fs.promises.mkdir(path.dirname(fileFullpath));
                     } catch (error) {
-
                     }
 
 
-                    let bodystr = await readBody(req);
+                    let bodystr = await readBody(req); 
+
+                    console.log(fileFullpath);
+
+                    console.log("berapa ini panjangnya  " + bodystr.length);
                     await fs.promises.writeFile(fileFullpath, bodystr);
                 } 
 
