@@ -116,6 +116,7 @@ export default class MyServer {
                 var fpathLower = filepath.toLocaleLowerCase();
                 if (fpathLower.endsWith(".md") ||
                     fpathLower.endsWith(".svg") || 
+                    fpathLower.endsWith(".jpg") || 
                     fpathLower.endsWith(".png") 
 
                 ) {
@@ -132,11 +133,7 @@ export default class MyServer {
                     }
 
 
-                    let bodystr = await readBody(req); 
-
-                    console.log(fileFullpath);
-
-                    console.log("berapa ini panjangnya  " + bodystr.length);
+                    let bodystr = await readBody(req);   
                     await fs.promises.writeFile(fileFullpath, bodystr);
                 } 
 

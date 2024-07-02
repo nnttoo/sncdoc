@@ -10,26 +10,29 @@ export function svgToPng(svgcontent, reqwidth){
         
 
     var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext('2d');
 
-    var imgelem = new Image();  
+    var imgelem = new Image();   
 
     
     var resolve;
     var p = new Promise((r,x)=>{
         resolve = r;
     });
-
-    
+  
 
     imgelem.onload = async ()=>{
 
-        var pengali = reqwidth / imgelem.naturalWidth;
+
+        var pengali = reqwidth / imgelem.width; 
         canvas.width = imgelem.naturalWidth * pengali;
         canvas.height = imgelem.naturalHeight * pengali;
 
+ 
+        
 
-        ctx.drawImage(imgelem, 0, 0);
+        var ctx = canvas.getContext('2d'); 
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(imgelem, 0, 0 );
         
         canvas.toBlob((blob)=>{
             resolve(blob); 
