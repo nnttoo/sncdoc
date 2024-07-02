@@ -1,4 +1,5 @@
 import { MermaidSaver } from "./mermaidSaver.mjs";
+import { svgToPng } from "./svgToPng.mjs";
 
 export class Mtools{
 
@@ -49,9 +50,18 @@ export class Mtools{
         var str = params.toString(); 
         await fetch("/savetext?" + str,{
             method : "POST",
-            body : filecontent
+            body : filecontent,
+            headers: {
+                'Content-Type': 'application/octet-stream'  // Atur sesuai dengan jenis konten yang benar
+            }
         });
     } 
+
+
+    async saveSvgToPng(filepath, svgcontent, maxwidth){
+        var blob = await svgToPng(svgcontent, maxwidth); 
+        return this.saveText(filepath,blob);
+    }
 
     /** @type {Mtools} */
     static instance 
