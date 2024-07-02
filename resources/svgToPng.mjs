@@ -1,3 +1,27 @@
+ 
+
+async function drawImageSrc(imgsrc){
+    var imgelem = new Image();  
+    await new Promise((r,x)=>{
+        imgelem.onload = r;
+        imgelem.src = imgsrc;
+    });
+
+    return imgelem;
+}
+
+/**
+ * 
+ * @param {HTMLCanvasElement} canvas
+ * @returns {Promise<Blob>}
+ */
+function canvasToBlob(canvas){
+    return new Promise((r,x)=>{
+        canvas.toBlob((blob)=>{
+            r(blob);
+        }, 'image/png');
+    })
+}
 
 /**
  * 
@@ -5,41 +29,28 @@
  * @param {int} reqwidth 
  * @returns {Promise<Blob>}
  */
-export function svgToPng(svgcontent, reqwidth){
+export async function svgToPng(svgcontent, reqwidth){
     const svgDataUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgcontent);
         
 
     var canvas = document.createElement('canvas');
 
-    var imgelem = new Image();   
+    var imgelem =  await drawImageSrc(svgDataUrl);
+   
+    var pengali = reqwidth / imgelem.width; 
 
+    var cwidth =  imgelem.naturalWidth * pengali;
+    var cheight =  imgelem.naturalHeight * pengali;
+
+    canvas.width = cwidth * 2;
+    canvas.height = cheight * 2; 
+
+    var ctx = canvas.getContext('2d'); 
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(imgelem, 0, 0 );
     
-    var resolve;
-    var p = new Promise((r,x)=>{
-        resolve = r;
-    });
-  
-
-    imgelem.onload = async ()=>{
+    var blob = await canvasToBlob(canvas);  
 
 
-        var pengali = reqwidth / imgelem.width; 
-        canvas.width = imgelem.naturalWidth * pengali;
-        canvas.height = imgelem.naturalHeight * pengali;
-
- 
-        
-
-        var ctx = canvas.getContext('2d'); 
-        ctx.imageSmoothingEnabled = false;
-        ctx.drawImage(imgelem, 0, 0 );
-        
-        canvas.toBlob((blob)=>{
-            resolve(blob); 
-        },'image/png') 
-    }
-
-    imgelem.src = svgDataUrl;
-
-    return p;
+    return blob;
 }

@@ -173,7 +173,7 @@ export class SncDocParser{
 
                 if(svgElement != null){
                     var imgpath = await mytools.mermaidSaver.saveMermaid(
-                        mermaidid + ".png", 
+                        mermaidid + ".svg", 
                         svgElement
                     ); 
 

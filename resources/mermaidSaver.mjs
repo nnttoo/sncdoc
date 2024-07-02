@@ -21,7 +21,7 @@ export class MermaidSaver{
 
         var listFile = [];
         for(let i=1;i<21;i++){
-            let fname = "mid_" + i + ".png";
+            let fname = "mid_" + i + ".svg";
 
             listFile.push(this.getSvgFilePath(fname));
         }
@@ -77,7 +77,7 @@ export class MermaidSaver{
         let fpath = this.getSvgFilePath(filename); 
         try {
 
-            await this.mtools.saveSvgToPng(fpath ,filecontent,1000);
+            await this.mtools.saveText(fpath ,filecontent );
         } catch (error) {
             
         } 
